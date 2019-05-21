@@ -8,7 +8,7 @@ namespace SistemaPessoal.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class EventoController : ControllerBase
     {
         // GET api/values
         [HttpGet]

@@ -7,7 +7,7 @@ namespace SistemaPessoal.Domain.Validators
     {
         public EventoValidator()
         {
-            RuleFor(x => x.Descricao).Must(x => !string.IsNullOrWhiteSpace(x));
+            RuleFor(x => x.Descricao).NotEmpty().Must(x => !string.IsNullOrWhiteSpace(x));
             RuleFor(x => x.DataHora).NotNull();
         }
     }
