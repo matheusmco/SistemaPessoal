@@ -9,5 +9,6 @@ namespace SistemaPessoal.Data.Interfaces
         int Update(EventoEntity Model);
         EventoEntity GetById(int id);
         IEnumerable<EventoEntity> GetAll();
+        void Delete(int id);
     }
 }

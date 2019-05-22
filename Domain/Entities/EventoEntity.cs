@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using SistemaPessoal.Data.Interfaces;
 using SistemaPessoal.Domain.Models;
+using SistemaPessoal.Helpers;
 
 namespace SistemaPessoal.Domain.Entities
 {
@@ -44,6 +47,53 @@ namespace SistemaPessoal.Domain.Entities
         {
             this.Id = _repository.Save(this);
             return this.Id;
+        }
+
+        public int Update()
+        {
+            this.Id = _repository.Update(this);
+            return this.Id;
+        }
+
+        public EventoEntity GetById(int id)
+        {
+            if (id.IsZeroOrNull())
+            {
+                throw new ArgumentException($"Parâmetro {nameof(id)} não pode ser zero ou nulo", nameof(id));
+            }
+
+            var Entity = _repository.GetById(id);
+
+            if (Entity == null)
+            {
+                throw new ApplicationException("Não foi encontrado nenhum evento com esse Id");
+                // TODO: change to DatabaseNotFoundException
+            }
+
+            return Entity;
+        }
+
+        public IEnumerable<EventoEntity> GetAll()
+        {
+            var lista = _repository.GetAll();
+
+            if(lista.Count() == 0)
+            {
+                throw new ApplicationException("Não foi encontrado nenhum evento");
+                // TODO: change to DatabaseNotFoundException
+            }
+
+            return lista;
+        }
+
+        public void Delete(int id)
+        {
+            if (id.IsZeroOrNull())
+            {
+                throw new ArgumentException($"Parâmetro {nameof(id)} não pode ser zero ou nulo", nameof(id));
+            }
+
+            _repository.Delete(id);
         }
     }
 }
