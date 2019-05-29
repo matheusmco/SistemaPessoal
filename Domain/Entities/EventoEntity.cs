@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SistemaPessoal.Data.Interfaces;
 using SistemaPessoal.Domain.Models;
-using SistemaPessoal.Helpers;
+using SistemaPessoal.Helpers.Extensions;
 
 namespace SistemaPessoal.Domain.Entities
 {
