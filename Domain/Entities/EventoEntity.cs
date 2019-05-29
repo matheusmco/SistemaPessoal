@@ -66,8 +66,7 @@ namespace SistemaPessoal.Domain.Entities
 
             if (Entity == null)
             {
-                throw new ApplicationException("Não foi encontrado nenhum evento com esse Id");
-                // TODO: change to DatabaseNotFoundException
+                throw new DatabaseNotFoundException("Não foi encontrado nenhum evento com esse Id");
             }
 
             return Entity;
@@ -79,8 +78,7 @@ namespace SistemaPessoal.Domain.Entities
 
             if(lista.Count() == 0)
             {
-                throw new ApplicationException("Não foi encontrado nenhum evento");
-                // TODO: change to DatabaseNotFoundException
+                throw new DatabaseNotFoundException("Não foi encontrado nenhum evento");
             }
 
             return lista;
