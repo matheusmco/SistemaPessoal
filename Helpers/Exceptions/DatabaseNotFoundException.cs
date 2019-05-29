@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace SistemaPessoal.Data.Interfaces
+namespace SistemaPessoal.Helpers.Exceptions
 {
     class DatabaseNotFoundException : DataException
     {
