@@ -7,17 +7,14 @@ namespace SistemaPessoal.Data
     public abstract class RepositoryBase 
     {
         protected IConfiguration configuration;
-        private readonly OrmLiteConnectionFactory _dbFactory;
 
-        internal OrmLiteConnectionFactory Connection
+        internal IDbConnection Connection
         {
             get
             {
                 var conn = new OrmLiteConnectionFactory(":memory:", SqliteDialect.Provider);
 
-                conn.OpenDbConnection();
-
-                return conn;
+                return conn.OpenDbConnection();
             }
         }
     }

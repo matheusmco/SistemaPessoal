@@ -16,7 +16,9 @@ namespace SistemaPessoal.Domain.Entities
         private DateTime? dataHora;
         private string localizacao;
         private string notasGerais;
-        
+
+        public int GetId => this.Id;
+
         public string Descricao => descricao;
         private void SetDescricao(string descricao) => this.descricao = descricao;
 
