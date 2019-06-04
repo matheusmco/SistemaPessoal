@@ -18,6 +18,11 @@ namespace SistemaPessoal.Domain.Models
 
         public EventoModel(EventoEntity Entidade)
         {
+            if (Entidade == null)
+            {
+                throw new ArgumentException("Entidade de evento nula no construtor do Model", nameof(Entidade));
+            }
+
             EventoId = Entidade.Id;
             Descricao = Entidade.Descricao;
             DataHora = Entidade.DataHora;
