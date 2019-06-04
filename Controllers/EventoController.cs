@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using SistemaPessoal.Data.Implementations;
-using SistemaPessoal.Data.Interfaces;
-using SistemaPessoal.Domain.Entities;
 using SistemaPessoal.Domain.Models;
 using SistemaPessoal.Services.Implementations;
 using SistemaPessoal.Services.Interfaces;
