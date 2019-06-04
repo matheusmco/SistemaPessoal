@@ -8,7 +8,7 @@ using SistemaPessoal.Helpers.Extensions;
 
 namespace SistemaPessoal.Domain.Entities
 {
-    class EventoEntity
+    public class EventoEntity
     {
         private readonly IEventoRepository _repository;
 
