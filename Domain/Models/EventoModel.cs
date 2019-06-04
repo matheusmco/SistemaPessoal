@@ -2,7 +2,7 @@ using System;
 
 namespace SistemaPessoal.Domain.Models
 {
-    class EventoModel
+    public class EventoModel
     {
         public int EventoId { get; set; }
         public string Descricao { get; set; }
