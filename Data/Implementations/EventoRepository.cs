@@ -5,7 +5,7 @@ using SistemaPessoal.Domain.Entities;
 
 namespace SistemaPessoal.Data.Implementations
 {
-    class IEventoRepository : RepositoryBase, SistemaPessoal.Data.Interfaces.IEventoRepository
+    class EventoRepository : RepositoryBase, IEventoRepository
     {
         public void Delete(int id)
         {
