@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace SistemaPessoal.Domain.Entities
 {
-    public abstract class BaseEntity
+    abstract class BaseEntity
     {
         protected virtual int Id { get; set; }
 

@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using SistemaPessoal.Data.Implementations;
+using SistemaPessoal.Data.Interfaces;
+using SistemaPessoal.Domain.Entities;
 using SistemaPessoal.Domain.Models;
 using SistemaPessoal.Services.Implementations;
 using SistemaPessoal.Services.Interfaces;
@@ -11,10 +14,14 @@ namespace SistemaPessoal.Controllers
     public class EventoController : ControllerBase
     {
         private IEventoService _service;
+        private IEventoRepository _repository;
+        private EventoEntity _entity;
 
         public EventoController()
         {
-            _service = new EventoService();
+            _repository = new EventoRepository();
+            _entity = new EventoEntity(_repository);
+            _service = new EventoService(_entity);
         }
 
         [HttpGet]

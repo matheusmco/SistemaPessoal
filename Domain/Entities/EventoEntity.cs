@@ -8,16 +8,18 @@ using SistemaPessoal.Helpers.Extensions;
 
 namespace SistemaPessoal.Domain.Entities
 {
-    class EventoEntity : BaseEntity
+    class EventoEntity
     {
         private readonly IEventoRepository _repository;
 
+        private int id;
         private string descricao;
         private DateTime? dataHora;
         private string localizacao;
         private string notasGerais;
 
-        public int GetId => this.Id;
+        public int Id => id;
+        private void SetId(int id) => this.id = id;
 
         public string Descricao => descricao;
         private void SetDescricao(string descricao) => this.descricao = descricao;
@@ -31,12 +33,13 @@ namespace SistemaPessoal.Domain.Entities
         public string NotasGerais => notasGerais;
         private void SetNotasGerais(string notasGerais) => this.notasGerais = notasGerais;
 
-        public EventoEntity(IEventoRepository repository) : base(0)
+        public EventoEntity(IEventoRepository repository)
+        
         {
             _repository = repository;
         }
 
-        public EventoEntity(IEventoRepository repository, EventoModel Model) : base(Model.EventoId)
+        public EventoEntity(IEventoRepository repository, EventoModel Model)
         {
             _repository = repository;
 
@@ -46,19 +49,25 @@ namespace SistemaPessoal.Domain.Entities
             notasGerais = Model.NotasGerais;
         }
 
-        public override int Save()
+        public int Save()
         {
-            this.Id = _repository.Save(this);
-            return this.Id;
+            var id = _repository.Save(this);
+
+            SetId(id);
+
+            return Id;
         }
 
-        public override int Update()
+        public int Update()
         {
-            this.Id = _repository.Update(this);
-            return this.Id;
+            var id = _repository.Update(this);
+
+            SetId(id);
+
+            return Id;
         }
 
-        public override BaseEntity GetById(int id)
+        public EventoEntity GetById(int id)
         {
             if (id.IsZeroOrNull())
             {
@@ -75,7 +84,7 @@ namespace SistemaPessoal.Domain.Entities
             return Entity;
         }
 
-        public override IEnumerable<BaseEntity> GetAll()
+        public IEnumerable<EventoEntity> GetAll()
         {
             var lista = _repository.GetAll();
 
@@ -87,7 +96,7 @@ namespace SistemaPessoal.Domain.Entities
             return lista;
         }
 
-        public override void Delete(int id)
+        public void Delete(int id)
         {
             if (id.IsZeroOrNull())
             {

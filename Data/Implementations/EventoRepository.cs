@@ -74,11 +74,11 @@ namespace SistemaPessoal.Data.Implementations
                         dataHora = Entity.DataHora,
                         localizacao = Entity.Localizacao,
                         notasGerais = Entity.NotasGerais,
-                        id = Entity.GetId
+                        id = Entity.Id
                     }
                 );
 
-                return Entity.GetId;
+                return Entity.Id;
             }
         }
     }
