@@ -11,12 +11,12 @@ namespace SistemaPessoal.Domain.Entities
             Id = id;
         }
 
-        public virtual int Save(BaseEntity Entidade)
+        public virtual int Save()
         {
             return default(int);
         }
 
-        public virtual int Update(BaseEntity Entidade)
+        public virtual int Update()
         {
             return default(int);
         }

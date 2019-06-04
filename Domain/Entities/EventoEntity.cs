@@ -46,19 +46,19 @@ namespace SistemaPessoal.Domain.Entities
             notasGerais = Model.NotasGerais;
         }
 
-        public int Save()
+        public override int Save()
         {
             this.Id = _repository.Save(this);
             return this.Id;
         }
 
-        public int Update()
+        public override int Update()
         {
             this.Id = _repository.Update(this);
             return this.Id;
         }
 
-        public EventoEntity GetById(int id)
+        public override BaseEntity GetById(int id)
         {
             if (id.IsZeroOrNull())
             {
@@ -75,7 +75,7 @@ namespace SistemaPessoal.Domain.Entities
             return Entity;
         }
 
-        public IEnumerable<EventoEntity> GetAll()
+        public override IEnumerable<BaseEntity> GetAll()
         {
             var lista = _repository.GetAll();
 
@@ -87,7 +87,7 @@ namespace SistemaPessoal.Domain.Entities
             return lista;
         }
 
-        public void Delete(int id)
+        public override void Delete(int id)
         {
             if (id.IsZeroOrNull())
             {
