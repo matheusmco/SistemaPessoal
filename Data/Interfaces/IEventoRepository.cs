@@ -3,7 +3,7 @@ using SistemaPessoal.Domain.Entities;
 
 namespace SistemaPessoal.Data.Interfaces
 {
-    interface IEventoRepository
+    public interface IEventoRepository
     {
         int Save(EventoEntity Model);
         int Update(EventoEntity Model);
