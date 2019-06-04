@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using SistemaPessoal.Data.Implementations;
 using SistemaPessoal.Data.Interfaces;
 using SistemaPessoal.Domain.Entities;
+using SistemaPessoal.Domain.Models;
+using SistemaPessoal.Services.Implementations;
+using SistemaPessoal.Services.Interfaces;
 
 namespace SistemaPessoal.Controllers
 {
@@ -13,48 +16,41 @@ namespace SistemaPessoal.Controllers
     [ApiController]
     public class EventoController : ControllerBase
     {
-        private BaseEntity _entidade;
-        private IEventoRepository _repository;
+        private IEventoService _service;
 
         public EventoController()
         {
-            _repository = new EventoRepository();
-            _entidade = new EventoEntity(_repository);
+            _service = new EventoService();
         }
 
-        // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<BaseEntity>> Get()
+        public ActionResult<IEnumerable<EventoModel>> Get()
         {
-            return Ok(_entidade.GetAll());
+            return Ok(_service.GetAll());
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return Ok(_entidade.GetById(id));
+            return Ok(_service.GetById(id));
         }
 
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody] BaseEntity Entidade)
+        public EventoModel Post([FromBody] EventoModel Model)
         {
-            _entidade.Save(Entidade);
+            return _service.Save(Model);
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] BaseEntity Entidade)
+        public EventoModel Put(int id, [FromBody] EventoModel Model)
         {
-            _entidade.Update(Entidade);
+            return _service.Update(Model);
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            _entidade.Delete(id);
+            _service.Delete(id);
         }
     }
 }
