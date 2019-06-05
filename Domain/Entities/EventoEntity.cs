@@ -19,19 +19,19 @@ namespace SistemaPessoal.Domain.Entities
         private string notasGerais;
 
         public int Id => id;
-        private void SetId(int id) => this.id = id;
+        // private void SetId(int id) => this.id = id;
 
         public string Descricao => descricao;
-        private void SetDescricao(string descricao) => this.descricao = descricao;
+        // private void SetDescricao(string descricao) => this.descricao = descricao;
 
         public DateTime? DataHora => dataHora;
-        private void SetDataHora(DateTime? dataHora) => this.dataHora = dataHora;
+        // private void SetDataHora(DateTime? dataHora) => this.dataHora = dataHora;
 
         public string Localizacao => localizacao;
-        private void SetLocalizacao(string localizacao) => this.localizacao = localizacao;
+        // private void SetLocalizacao(string localizacao) => this.localizacao = localizacao;
 
         public string NotasGerais => notasGerais;
-        private void SetNotasGerais(string notasGerais) => this.notasGerais = notasGerais;
+        // private void SetNotasGerais(string notasGerais) => this.notasGerais = notasGerais;
 
         public EventoEntity(IEventoRepository repository)
         
@@ -39,9 +39,12 @@ namespace SistemaPessoal.Domain.Entities
             _repository = repository;
         }
 
-        public EventoEntity(IEventoRepository repository, EventoModel Model)
+        public void FillData(EventoModel Model)
         {
-            _repository = repository;
+            if (Model == null)
+            {
+                throw new ArgumentException("Model nulo em FillData de EventoENtity", nameof(Model));
+            }
 
             descricao = Model.Descricao;
             dataHora = Model.DataHora;
@@ -51,20 +54,14 @@ namespace SistemaPessoal.Domain.Entities
 
         public int Save()
         {
-            var id = _repository.Save(this);
-
-            SetId(id);
-
-            return Id;
+            id = _repository.Save(this);
+            return id;
         }
 
         public int Update()
         {
-            var id = _repository.Update(this);
-
-            SetId(id);
-
-            return Id;
+            id = _repository.Update(this);
+            return id;
         }
 
         public EventoEntity GetById(int id)
