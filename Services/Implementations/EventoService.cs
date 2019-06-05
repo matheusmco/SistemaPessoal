@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
+using SistemaPessoal.Data.Interfaces;
+using SistemaPessoal.Domain.Entities;
 using SistemaPessoal.Domain.Models;
 using SistemaPessoal.Services.Interfaces;
 
@@ -6,29 +9,40 @@ namespace SistemaPessoal.Services.Implementations
 {
     class EventoService : IEventoService
     {
+        private EventoEntity _entity;
+
+        public EventoService(EventoEntity entity)
+        {
+            _entity = entity;
+        }
+
         public void Delete(int id)
         {
-            throw new System.NotImplementedException();
+            _entity.Delete(id);
         }
 
         public IEnumerable<EventoModel> GetAll()
         {
-            throw new System.NotImplementedException();
+            return _entity.GetAll().Select(x => new EventoModel(x));
         }
 
         public EventoModel GetById(int id)
         {
-            throw new System.NotImplementedException();
+            return new EventoModel(_entity.GetById(id));
         }
 
         public EventoModel Save(EventoModel Evento)
         {
-            throw new System.NotImplementedException();
+            _entity.FillData(Evento);
+            var id = _entity.Save();
+            return new EventoModel(_entity.GetById(id));
         }
 
         public EventoModel Update(EventoModel Evento)
         {
-            throw new System.NotImplementedException();
+            _entity.FillData(Evento);
+            var id = _entity.Update();
+            return new EventoModel(_entity.GetById(id));
         }
     }
 }
