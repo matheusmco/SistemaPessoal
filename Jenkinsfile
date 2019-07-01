@@ -10,9 +10,15 @@ node {
         sh 'dotnet build'
     }
 
-    // stage('Build') {
-    //     /* This builds the actual image; synonymous to
-    //      * docker build on the command line */
-    //     app = docker.build("matheusoliveira/sistema.pessoal.api") 
-    // } 
+    stage('Build Image') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
+        app = docker.build("matheusoliveira/sistema.pessoal.api") 
+    } 
+
+    stage('Push to registry') {
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-registry') {
+            app.push("0.1")
+        }
+    }
 }
