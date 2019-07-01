@@ -1,6 +1,6 @@
 node {
     stage('Clone repository') {
-        git branch: 'master',
+        git branch: 'release/creating_api',
             credentialsId: 'matheusoliveira-github-ssh',
             url: 'https://github.com/matheusmco/SistemaPessoal.git'
     }
